@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College of Physical Education - CQUPT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2b4a81; /* CQUPT blue */
+            --secondary: #c8102e; /* Accent red */
+            --accent: #f0b323; /* Gold accent */
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .hero {
+            background: linear-gradient(rgba(10, 30, 61, 0.85), rgba(10, 30, 61, 0.9)), url('标题.jpg') center/cover no-repeat;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* 🟦 导航栏容器 */
+        .nav-container {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 🟦 一级导航 */
+        .nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav > li {
+            position: relative;
+        }
+
+        .nav > li > a {
+            display: block;
+            padding: 20px 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav > li:hover > a {
+            background-color: #1e3363;
+        }
+
+        /* 🟦 二级菜单 */
+        .dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #3e5a99;
+            min-width: 160px;
+            list-style: none;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            z-index: 1000;
+        }
+
+        .nav li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            padding: 0;
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown li a:hover {
+            background-color: #2a4480;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            height: 350px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        /* Facilities Section */
+        .facilities-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .facility-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .facility-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .facility-card:hover .facility-img img {
+            transform: scale(1.1);
+        }
+
+        .facility-content {
+            padding: 25px;
+        }
+
+        .facility-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .facility-content p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .footer-info {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .copyright {
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 180px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .nav > li > a {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Top Banner -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>College of Physical Education</h1>
+        <p>Chongqing University of Posts and Telecommunications</p>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-container">
+    <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li>
+            <a href="#">Overview</a>
+            <ul class="dropdown">
+                <li><a href="#" class="active">Introduction</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Faculty Team</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">CPC Affairs</a>
+            <ul class="dropdown">
+                <li><a href="#">Party Building</a></li>
+                <li><a href="#">Youth League</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Research</a></li>
+        <li>
+            <a href="#">Teaching</a>
+            <ul class="dropdown">
+                <li><a href="#">Course Design</a></li>
+                <li><a href="#">Teaching Resources</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Graduate</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Activities</a></li>
+    </ul>
+</nav>
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Our College</h2>
+            <p>The College of Physical Education is dedicated to excellence in sports education and athletic development</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>The College of Physical Education at Chongqing University of Posts and Telecommunications is a secondary teaching unit directly under the university. Our primary responsibilities include delivering physical education to all students, developing high-level sports teams, organizing mass sports activities, and advancing sports discipline construction.</p>
+
+                <h3>Faculty & Resources</h3>
+                <p>Our college currently has over 60 faculty and staff members, with professors and associate professors accounting for more than 40% of the total. Our team includes international/national referees and national-level coaches. We are equipped with modern sports facilities including a comprehensive gymnasium, swimming pool, and track and field stadium.</p>
+
+                <h3>Academic Programs</h3>
+                <p>We offer more than 20 public physical education courses such as basketball, volleyball, martial arts, and swimming. All undergraduate students are required to complete the "Physical Education and Health" course. Our curriculum is designed to promote lifelong fitness habits and holistic student development.</p>
+            </div>
+
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="CQUPT Sports Complex">
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">60+</div>
+                <div class="stat-text">Faculty Members</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-text">Sports Courses</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">40%</div>
+                <div class="stat-text">Professors & Associate Professors</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-text">National Championships</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Facilities Section -->
+<section class="facilities-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Facilities</h2>
+            <p>World-class sports facilities for training and competition</p>
+        </div>
+
+        <div class="facilities-grid">
+            <div class="facility-card">
+                <div class="facility-img">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Indoor Stadium">
+                </div>
+                <div class="facility-content">
+                    <h3>Comprehensive Indoor Stadium</h3>
+                    <p>Our multi-purpose indoor facility hosts basketball, volleyball, badminton, and gymnastics competitions with seating for 3,000 spectators.</p>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-img">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Swimming Pool">
+                </div>
+                <div class="facility-content">
+                    <h3>Olympic-Size Swimming Pool</h3>
+                    <p>50-meter competition pool with 8 lanes, diving platforms, and modern water filtration systems for year-round training.</p>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-img">
+                    <img src="https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Track and Field">
+                </div>
+                <div class="facility-content">
+                    <h3>Track & Field Complex</h3>
+                    <p>International-standard 400m synthetic track with field event areas for javelin, discus, long jump, and pole vault.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3>College of Physical Education</h3>
+            <p>Chongqing University of Posts and Telecommunications</p>
+            <p>Building Champions in Sports and Education</p>
+        </div>
+
+        <div class="footer-info">
+            <h3>Contact Us</h3>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt contact-icon"></i>
+                <span>2 Chongwen Road, Nan'an District, Chongqing, China</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone contact-icon"></i>
+                <span>+86 23 6246 0000</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope contact-icon"></i>
+                <span>sports@cqupt.edu.cn</span>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 College of Physical Education, Chongqing University of Posts and Telecommunications. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+        // Navigation active state
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage ||
+                    (link.textContent === 'Introduction' && currentPage === '')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
