@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School of Physical Education</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 顶部横幅图 */
+        .hero {
+            background-image: url('header.png');
+            background-size: cover;
+            background-position: center;
+            height: 150px;
+        }
+
+        /* 轮播区域 */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 1000px;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-image {
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-image img {
+            width: 100%;
+    height: 100%;
+    object-fit: cover; /* 原来是 contain，现在改为 cover */
+    display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .carousel-dots span {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            margin: 0 6px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-dots .active {
+            background-color: #2b4a81;
+        }
+
+        /* 导航栏 */
+        /* 🟦 导航栏容器 */
+.nav-container {
+  background-color: #2b4a81;
+}
+
+/* 🟦 一级导航 */
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav > li {
+  position: relative;
+}
+
+.nav > li > a {
+  display: block;
+  padding: 20px 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav > li:hover > a {
+  background-color: #1e3363;
+}
+
+/* 🟦 二级菜单 */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background-color: #3e5a99;
+  min-width: 160px;
+  list-style: none;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+.nav li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li {
+  padding: 0;
+}
+
+.dropdown li a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown li a:hover {
+  background-color: #2a4480;
+}
+
+
+        /* 内容区域 */
+        .content {
+            padding: 100px 120px;
+            line-height: 1.8;
+        }
+
+        .content h2 {
+            color: #2b4a81;
+        }
+
+        /* 新闻区域 */
+       .news-section {
+  background-color: #f2f2f2;
+  padding: 60px;
+}
+
+.news-section h2 {
+  font-size: 32px;
+  color: #00d9ff; /* 更鲜艳的橙红色 */
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+
+.news-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.news-date {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}
+
+.news-title a {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b4a81;
+  text-decoration: none;
+}
+
+.news-title a:hover {
+  color: #0078e7;
+  text-decoration: underline;
+}
+
+.life-quote {
+  background-color: #2b4a81;      /* 深蓝背景 */
+  color: #ffdf40;                 /* 鲜亮金黄文字 */
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 10px;
+  margin-top: 60px;
+  font-family: Georgia, serif;   /* 更有格调的字体 */
+  letter-spacing: 1px;
+}
+
+
+        /* 页脚 */
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* === 关于我们（双栏内容区） === */
+.about-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  gap: 40px;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h2 {
+  font-size: 36px;
+  color: #f3eb04;
+  margin-bottom: 20px;
+}
+
+.about-text h2 .highlight {
+  color: #063cef;  /* 黄色强调色 */
+}
+
+.about-text p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+.section-title {
+  display: inline-block;
+  background-color: #07d1f9;   /* 你可以根据主色调换成 #f1b400 等 */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.section-title .highlight {
+  color: #ffe600;  /* 黄色强调色文字 */
+}
+
+
+.read-more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #10a9f0;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background-color: #940ef4;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  max-height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.reverse-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  gap: 40px;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.reverse-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.reverse-text h2 {
+  font-size: 36px;
+  color: #2b4a81;
+  margin-bottom: 20px;
+}
+
+.reverse-text h2 .highlight-yellow {
+  color: #f1b400;
+}
+
+.reverse-text p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.reverse-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.reverse-image img {
+  max-width: 100%;
+  max-height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- 顶部横幅图 -->
+    <div class="hero"></div>
+
+    <!-- 导航栏 -->
+    
+<nav class="nav-container">
+  <ul class="nav">
+    <li><a href="#">Home</a></li>
+    <li>
+      <a href="#">Overview</a>
+      <ul class="dropdown">
+        <li><a href="https://syhsb.github.io/myweb/" target="_blank">Introduction</a></li>
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Faculty Team</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">CPC Affairs</a>
+      <ul class="dropdown">
+        <li><a href="#">Party Building</a></li>
+        <li><a href="#">Youth League</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Research</a></li>
+    <li>
+      <a href="#">Teaching</a>
+      <ul class="dropdown">
+        <li><a href="#">Course Design</a></li>
+        <li><a href="#">Teaching Resources</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Graduate</a></li>
+    <li><a href="#">Training</a></li>
+    <li><a href="#">Activities</a></li>
+    <li><a href="#">Popularization</a></li>
+    <li><a href="#">Students</a></li>
+    <li><a href="#">Cooperation</a></li>
+    <li><a href="#">Services</a></li>
+  </ul>
+</nav>
+
+
+    <!-- 图片轮播区域 -->
+    <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carousel-track">
+            <div class="carousel-image"><img src="滚动1.jpg" alt="Gallery 1"></div>
+            <div class="carousel-image"><img src="滚动2.jpg" alt="Gallery 2"></div>
+            <div class="carousel-image"><img src="滚动3.jpg" alt="Gallery 3"></div>
+        </div>
+        <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+        <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+
+    
+    <!-- 内容区域：双栏布局 -->
+<div class="about-section">
+  <div class="about-text">
+    <h2 class="section-title"><span class="highlight">About</span> Our College</h2>
+
+    <p>The School of Physical Education at Chongqing University of Posts and Telecommunications (CQUPT) is committed to cultivating top-notch professionals in physical education, social sports guidance, and martial arts training.</p>
+    <p>We offer undergraduate and graduate programs that emphasize scientific training, teaching excellence, and social responsibility. Our students are encouraged to engage in diverse campus activities, competitions, and research to build a strong foundation for future careers.</p>
+    <a href="#" class="read-more-btn">READ MORE</a>
+  </div>
+  <div class="about-image">
+    <img src="配文字.jpg" alt="School Introduction Image">
+  </div>
+</div>
+
+<!-- 学术成果区块：图左文右 -->
+<div class="reverse-section">
+  <div class="reverse-image">
+    <img src="配文字2.webp" alt="Academic Achievements Image">
+  </div>
+  <div class="reverse-text">
+     <h2 class="section-title"><span class="highlight">Academic</span> Achievements</h2>
+     
+    <p>
+      Our college has made outstanding contributions in the fields of sports science, physical education research, and athlete development.
+      Faculty members actively publish research papers, lead national-level projects, and mentor students in innovation competitions and academic forums.
+    </p>
+    <p>
+      Students have won numerous awards in national university sports competitions, and the school has built collaborations with international institutions to promote academic exchange and research visibility.
+    </p>
+    <a href="https://scie.cqupt.edu.cn/kxyj/kycg.htm" class="read-more-btn" target = "_blank">READ MORE</a>
+  </div>
+</div>
+
+
+    <!-- 新闻区域 -->
+    <div class="news-section">
+  <h2>Latest News</h2>
+  <div class="news-cards">
+    <div class="news-card">
+      <div class="news-date">June 1, 2025</div>
+      <div class="news-title">
+        <a href="https://tyxy.cqupt.edu.cn/info/1081/10103.htm" target="_blank">2025 Graduation Ceremony Held Successfully</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-date">May 20, 2025</div>
+      <div class="news-title">
+        <a href="#">New Martial Arts and Fitness Laboratory Opens</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-date">April 30, 2025</div>
+      <div class="news-title">
+        <a href="#">Faculty Seminar on Sports Technology Innovation</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 人生金言部分 -->
+<div class="life-quote">
+  We are all striving to live
+</div>
+
+
+
+    <!-- 页脚 -->
+    <div class="footer">
+        &copy; 2025 Physical Education College of CQUPT. All rights reserved.
+    </div>
+
+    <!-- JavaScript 逻辑 -->
+    <script>
+        const track = document.getElementById('carousel-track');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const slides = document.querySelectorAll('.carousel-image');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carousel = document.getElementById('carousel');
+        let currentIndex = 0;
+        let interval;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            const dots = dotsContainer.querySelectorAll('span');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            currentIndex = (index + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+
+        function prevSlideFunc() {
+            goToSlide(currentIndex - 1);
+        }
+
+        function startAutoSlide() {
+            interval = setInterval(nextSlide, 10000); // 每张图 10 秒
+        }
+
+        function stopAutoSlide() {
+            clearInterval(interval);
+        }
+
+        // 初始化圆点
+        slides.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        // 初始化状态
+        goToSlide(0);
+        startAutoSlide();
+
+        // 悬停暂停
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+
+        // 按钮控制
+        prevBtn.addEventListener('click', prevSlideFunc);
+        nextBtn.addEventListener('click', nextSlide);
+    </script>
+
+</body>
+</html>
